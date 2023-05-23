@@ -21,6 +21,7 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
  * Home Screen window
+ *
  * @author Felice
  */
 public class HomeScreen extends JFrame implements ActionListener {
@@ -69,7 +70,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.btnPlay.setIcon(new ImageIcon("assets/play.png")); // sets the image near the button
         this.btnPlay.setBackground(Color.white);
         this.btnPlay.setBorderPainted(false); // removes border
-        this.btnPlay.addActionListener(this); 
+        this.btnPlay.addActionListener(this);
         this.btnPlay.setActionCommand("play");
         this.btnPlay.setOpaque(false); // removes transparency
 
@@ -112,7 +113,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.pnlNord = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         this.pnlNord.add(btnOptions);
         this.pnlNord.setOpaque(false);
-        
+
         this.pnlPlay = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 50));
         this.pnlPlay.add(btnPlay);
         this.pnlPlay.setOpaque(false);
