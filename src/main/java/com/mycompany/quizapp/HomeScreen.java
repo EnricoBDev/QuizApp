@@ -25,7 +25,7 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  */
 public class HomeScreen extends JFrame implements ActionListener {
 
-    private ArrayList<Object> leaderboardArray = new ArrayList<>();
+    private ArrayList<Object> leaderboardArray;
 
     private JList leaderboardList = new JList(); //update with custom JList
 
@@ -112,6 +112,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         pnlNord = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         pnlNord.add(btnOptions);
         pnlNord.setOpaque(false);
+        
         pnlPlay = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 50));
         pnlPlay.add(btnPlay);
         pnlPlay.setOpaque(false);
