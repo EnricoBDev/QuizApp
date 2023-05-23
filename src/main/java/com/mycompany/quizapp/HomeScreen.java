@@ -20,12 +20,12 @@ import javax.swing.JPanel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
- *
+ * Home Screen window
  * @author Felice
  */
 public class HomeScreen extends JFrame implements ActionListener {
 
-    private ArrayList<Object> leaderboardArray = new ArrayList<>();
+    private ArrayList<Object> leaderboardArray;
 
     private JList leaderboardList = new JList(); //update with custom JList
 
@@ -37,16 +37,16 @@ public class HomeScreen extends JFrame implements ActionListener {
     public HomeScreen(ArrayList<Object> leaderboardArray) {
 
         this.leaderboardArray = leaderboardArray;
-        setTitle("QuizApp");
-        setSize(800, 400);
-        setLayout(new BorderLayout());
-        setLocationRelativeTo(null);
-        setButton();
-        setLabel();
-        setPanels();
+        this.setTitle("QuizApp");
+        this.setSize(800, 400);
+        this.setLayout(new BorderLayout());
+        this.setLocationRelativeTo(null);
+        this.setButton();
+        this.setLabel();
+        this.setPanels();
 
         contentPane = new JPanel(new BorderLayout()) {
-            @Override
+            @Override // paint the background
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 ImageIcon backgroundImageIcon = new ImageIcon("assets/background.jpeg");
@@ -55,104 +55,105 @@ public class HomeScreen extends JFrame implements ActionListener {
             }
         };
 
-        setContentPane(contentPane);
-        setVisible(true);
-        addToFrame();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        setVisible(true);
+        this.setContentPane(contentPane);
+        this.setVisible(true);
+        this.addToFrame();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setVisible(true);
     }
 
     private void setButton() {
 
-        btnPlay = new JButton("PLAY NOW");
-        btnPlay.setIcon(new ImageIcon("assets/play.png"));
-        btnPlay.setBackground(Color.white);
-        btnPlay.setBorderPainted(false);
-        btnPlay.addActionListener(this);
-        btnPlay.setActionCommand("play");
-        btnPlay.setOpaque(false);
+        this.btnPlay = new JButton("PLAY NOW");
+        this.btnPlay.setIcon(new ImageIcon("assets/play.png")); // sets the image near the button
+        this.btnPlay.setBackground(Color.white);
+        this.btnPlay.setBorderPainted(false); // removes border
+        this.btnPlay.addActionListener(this); 
+        this.btnPlay.setActionCommand("play");
+        this.btnPlay.setOpaque(false); // removes transparency
 
-        btnOptions = new JButton();
-        btnOptions.setIcon(new ImageIcon("assets/options.png"));
-        btnOptions.setBackground(Color.white);
-        btnOptions.setBorderPainted(false);
-        btnOptions.addActionListener(this);
-        btnOptions.setActionCommand("options");
-        btnOptions.setOpaque(false);
+        this.btnOptions = new JButton();
+        this.btnOptions.setIcon(new ImageIcon("assets/options.png"));
+        this.btnOptions.setBackground(Color.white);
+        this.btnOptions.setBorderPainted(false);
+        this.btnOptions.addActionListener(this);
+        this.btnOptions.setActionCommand("options");
+        this.btnOptions.setOpaque(false);
 
-        btnExit = new JButton();
-        btnExit.setIcon(new ImageIcon("assets/exit.png"));
-        btnExit.setBackground(Color.white);
-        btnExit.setBorderPainted(false);
-        btnExit.addActionListener(this);
-        btnExit.setActionCommand("exit");
-        btnExit.setOpaque(false);
+        this.btnExit = new JButton();
+        this.btnExit.setIcon(new ImageIcon("assets/exit.png"));
+        this.btnExit.setBackground(Color.white);
+        this.btnExit.setBorderPainted(false);
+        this.btnExit.addActionListener(this);
+        this.btnExit.setActionCommand("exit");
+        this.btnExit.setOpaque(false);
 
-        btnProfile = new JButton("CREATE NEW PROFILE");
-        btnProfile.setBackground(Color.white);
-        btnProfile.addActionListener(this);
-        btnProfile.setOpaque(false);
+        this.btnProfile = new JButton("CREATE NEW PROFILE");
+        this.btnProfile.setBackground(Color.white);
+        this.btnProfile.addActionListener(this);
+        this.btnProfile.setOpaque(false);
 
     }
 
     private void setLabel() {
 
-        lblLeaderboard = new JLabel(new ImageIcon("assets/leaderboard.png"));
-        lblLeaderboard.setText("LEADERBOARD");
+        this.lblLeaderboard = new JLabel(new ImageIcon("assets/leaderboard.png"));
+        this.lblLeaderboard.setText("LEADERBOARD");
 
-        lblAvatar = new JLabel(new ImageIcon("assets/avatar.png"));
+        this.lblAvatar = new JLabel(new ImageIcon("assets/avatar.png"));
 
-        lblLogo = new JLabel(new ImageIcon("assets/logo.png"));
+        this.lblLogo = new JLabel(new ImageIcon("assets/logo.png"));
 
     }
 
     private void setPanels() {
 
-        pnlNord = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        pnlNord.add(btnOptions);
-        pnlNord.setOpaque(false);
-        pnlPlay = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 50));
-        pnlPlay.add(btnPlay);
-        pnlPlay.setOpaque(false);
+        this.pnlNord = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        this.pnlNord.add(btnOptions);
+        this.pnlNord.setOpaque(false);
+        
+        this.pnlPlay = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 50));
+        this.pnlPlay.add(btnPlay);
+        this.pnlPlay.setOpaque(false);
 
-        pnlCenter = new JPanel(new GridLayout(2, 1));
-        pnlCenter.add(lblLogo);
-        pnlCenter.add(pnlPlay);
-        pnlCenter.setOpaque(false);
+        this.pnlCenter = new JPanel(new GridLayout(2, 1));
+        this.pnlCenter.add(lblLogo);
+        this.pnlCenter.add(pnlPlay);
+        this.pnlCenter.setOpaque(false);
 
-        pnlSud = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        pnlSud.add(btnExit);
-        pnlSud.setOpaque(false);
+        this.pnlSud = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        this.pnlSud.add(btnExit);
+        this.pnlSud.setOpaque(false);
 
-        pnlProfile = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        pnlProfile.add(btnProfile);
-        pnlProfile.setOpaque(false);
+        this.pnlProfile = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        this.pnlProfile.add(btnProfile);
+        this.pnlProfile.setOpaque(false);
 
-        pnlEast = new JPanel();
-        pnlEast.setLayout(new GridLayout(2, 1));
-        pnlEast.add(lblAvatar);
-        pnlEast.add(pnlProfile);
-        pnlEast.setOpaque(false);
+        this.pnlEast = new JPanel();
+        this.pnlEast.setLayout(new GridLayout(2, 1));
+        this.pnlEast.add(lblAvatar);
+        this.pnlEast.add(pnlProfile);
+        this.pnlEast.setOpaque(false);
 
-        pnlLeaderboard = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        pnlLeaderboard.add(leaderboardList);
-        pnlLeaderboard.setOpaque(false);
+        this.pnlLeaderboard = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        this.pnlLeaderboard.add(leaderboardList);
+        this.pnlLeaderboard.setOpaque(false);
 
-        pnlWest = new JPanel();
-        pnlWest.setLayout(new BoxLayout(pnlWest, BoxLayout.Y_AXIS));
-        pnlWest.add(lblLeaderboard);
-        pnlWest.add(pnlLeaderboard);
-        pnlWest.setOpaque(false);
+        this.pnlWest = new JPanel();
+        this.pnlWest.setLayout(new BoxLayout(pnlWest, BoxLayout.Y_AXIS));
+        this.pnlWest.add(lblLeaderboard);
+        this.pnlWest.add(pnlLeaderboard);
+        this.pnlWest.setOpaque(false);
     }
 
     private void addToFrame() {
 
-        add(pnlNord, BorderLayout.NORTH);
-        add(pnlCenter, BorderLayout.CENTER);
-        add(pnlSud, BorderLayout.SOUTH);
-        add(pnlEast, BorderLayout.EAST);
-        add(pnlWest, BorderLayout.WEST);
+        this.add(pnlNord, BorderLayout.NORTH);
+        this.add(pnlCenter, BorderLayout.CENTER);
+        this.add(pnlSud, BorderLayout.SOUTH);
+        this.add(pnlEast, BorderLayout.EAST);
+        this.add(pnlWest, BorderLayout.WEST);
 
     }
 
