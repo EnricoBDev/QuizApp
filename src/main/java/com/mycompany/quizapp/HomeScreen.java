@@ -163,6 +163,10 @@ public class HomeScreen extends JFrame implements ActionListener {
 
         switch (e.getActionCommand()) {
 
+            case "play":
+                QuizScreen quizScreen = new QuizScreen();
+                break;
+
             case "exit":
 
                 System.exit(0);
