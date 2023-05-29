@@ -1,11 +1,13 @@
 package com.mycompany.quizapp;
 
+import java.io.Serializable;
+
 /**
  * Model class for the player
  *
  * @author zotta
  */
-public class PlayerClass {
+public class PlayerClass implements Serializable{
 
     private String username;
     private String image;
@@ -56,7 +58,7 @@ public class PlayerClass {
 
     @Override
     public String toString() {
-        return username + ";" + image + ";" + level + ";" + score + ";";
+        return "Username: " + this.username + " pts: " + this.score;
     }
 
 }
