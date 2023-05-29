@@ -9,9 +9,12 @@ import java.util.ArrayList;
 public class QuizApp {
 
     public static void main(String[] args) {
-
-        ArrayList<Object> leaderboardArray = new ArrayList<>();
-
+        
+        ArrayList<PlayerClass> leaderboardArray = new ArrayList<>();
+        
+        PlayersFileReaderClass leaderboardReader = new PlayersFileReaderClass(leaderboardArray);
+        leaderboardReader.readFromFile();
+        
         HomeScreen homeScreen = new HomeScreen(leaderboardArray);
 
     }

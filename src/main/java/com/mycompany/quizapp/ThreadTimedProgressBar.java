@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.quizapp;
+package com.mycompany.quizapp.components;
 
 /**
- *
+ * Custom thread to stop when using the progress bar
  * @author EnricoBDev
  */
 public class ThreadTimedProgressBar extends Thread{
