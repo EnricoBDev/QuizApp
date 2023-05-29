@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -26,16 +24,16 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  */
 public class HomeScreen extends JFrame implements ActionListener {
 
-    private ArrayList<Object> leaderboardArray;
+    private ArrayList<PlayerClass> leaderboardArray;
 
-    private JList leaderboardList = new JList(); //update with custom JList
+    private LeaderboardList leaderboardList;
 
     private JButton btnPlay, btnExit, btnOptions, btnProfile;
     private JLabel lblLeaderboard, lblAvatar, lblLogo;
 
     private JPanel pnlNord, pnlCenter, pnlSud, pnlEast, pnlWest, pnlPlay, pnlProfile, pnlLeaderboard, contentPane;
 
-    public HomeScreen(ArrayList<Object> leaderboardArray) {
+    public HomeScreen(ArrayList<PlayerClass> leaderboardArray) {
 
         this.leaderboardArray = leaderboardArray;
         this.setTitle("QuizApp");
@@ -43,6 +41,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.setButton();
+        this.setList();
         this.setLabel();
         this.setPanels();
 
@@ -95,6 +94,10 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.btnProfile.addActionListener(this);
         this.btnProfile.setOpaque(false);
 
+    }
+
+    private void setList() {
+        this.leaderboardList = new LeaderboardList(leaderboardArray);
     }
 
     private void setLabel() {
@@ -168,9 +171,7 @@ public class HomeScreen extends JFrame implements ActionListener {
                 break;
 
             case "exit":
-
                 System.exit(0);
-
                 break;
 
         }

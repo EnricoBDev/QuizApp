@@ -1,7 +1,6 @@
-package com.mycompany.quizapp;
+package com.mycompany.quizapp.components;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JProgressBar;
 
 /**

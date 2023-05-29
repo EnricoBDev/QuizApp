@@ -1,5 +1,9 @@
 package com.mycompany.quizapp;
 
+import com.mycompany.quizapp.components.ThreadTimedProgressBar;
+import com.mycompany.quizapp.components.ThreadTimedProgressBar;
+import com.mycompany.quizapp.components.TimedProgressBar;
+import com.mycompany.quizapp.components.TimedProgressBar;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 
@@ -13,8 +17,8 @@ public class QuizScreen extends JFrame {
 
     public QuizScreen() {
 
-        this.setLayout(new GridLayout(2,1));
-        
+        this.setLayout(new GridLayout(2, 1));
+
         // TODO: Create separate methods
         progressBar = new TimedProgressBar();
         this.add(progressBar);
