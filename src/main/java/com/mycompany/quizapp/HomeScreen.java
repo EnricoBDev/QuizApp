@@ -71,7 +71,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.btnPlay.setBorderPainted(false); // removes border
         this.btnPlay.addActionListener(this);
         this.btnPlay.setActionCommand("play");
-        this.btnPlay.setOpaque(false); // removes transparency
+        this.btnPlay.setOpaque(false); // sets transparency
 
         this.btnOptions = new JButton();
         this.btnOptions.setIcon(new ImageIcon("assets/options.png"));
