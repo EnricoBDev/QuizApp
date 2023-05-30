@@ -6,19 +6,22 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author EnricoBDev
  */
-public class QuizScreen extends JFrame {
+public class QuizScreen extends JFrame implements ActionListener {
 
     ArrayList<QuestionClass> questionsArray;
 
@@ -27,13 +30,14 @@ public class QuizScreen extends JFrame {
     JButton[] btnAnswersArray;
 
     TimedProgressBar progressBar;
+    ThreadTimedProgressBar barThread;
 
     public QuizScreen(ArrayList<QuestionClass> questionsArray) {
 
         this.questionsArray = questionsArray;
-        
+
         Collections.shuffle(questionsArray);
-        Collections.sort(questionsArray);
+        // Collections.sort(questionsArray);
 
         this.setTitle("Quiz");
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
@@ -42,16 +46,17 @@ public class QuizScreen extends JFrame {
         this.setSize(900, 400);
 
         this.createPanels();
-        this.createComponents();
+        this.createProgressBar();
+        this.createQuizComponents();
         this.addToPanels();
-        this.addListeners();
-        this.addToFrame();
+        this.addBarToFrame();
+        this.addQuizToFrame();
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
 
-        ThreadTimedProgressBar barThread = new ThreadTimedProgressBar(progressBar);
-        barThread.start();
+        this.barThread = new ThreadTimedProgressBar(this, progressBar);
+        this.barThread.start();
 
     }
 
@@ -67,38 +72,73 @@ public class QuizScreen extends JFrame {
         this.pnlAnswers.setLayout(new GridLayout(2, 2));
     }
 
-    private void createComponents() {
+    private void createProgressBar() {
         this.progressBar = new TimedProgressBar();
-        
+    }
+
+    private void createQuizComponents() {
+
         this.lblSubject = new JLabel(questionsArray.get(0).getSubject().toUpperCase());
         this.lblQuestion = new JLabel(questionsArray.get(0).getQuestion());
-        
+
         this.btnAnswersArray = new JButton[4];
-        for(int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             this.btnAnswersArray[i] = new JButton(questionsArray.get(0).getAnswers()[i]);
             this.btnAnswersArray[i].setOpaque(false);
             this.btnAnswersArray[i].setBackground(Color.white);
+            this.btnAnswersArray[i].addActionListener(this);
         }
     }
 
     private void addToPanels() {
         this.pnlSubject.add(this.lblSubject);
         this.pnlQuestion.add(this.lblQuestion);
-        
-        for(JButton i : btnAnswersArray){
+
+        for (JButton i : btnAnswersArray) {
             this.pnlAnswers.add(i);
         }
-        
+
         this.pnlQuiz.add(this.pnlSubject);
         this.pnlQuiz.add(this.pnlQuestion);
         this.pnlQuiz.add(this.pnlAnswers);
     }
 
-    private void addListeners() {
+    private void addBarToFrame() {
+        this.add(progressBar);
     }
 
-    private void addToFrame() {
-        this.add(progressBar);
+    private void addQuizToFrame() {
         this.add(pnlQuiz);
+    }
+
+    private void updateQuizUI() {
+        // repaints the ui
+        this.revalidate();
+        this.repaint();
+        
+        this.lblSubject.setText(this.questionsArray.get(0).getSubject());
+        this.lblQuestion.setText(this.questionsArray.get(0).getQuestion());
+        
+        for(int i = 0; i < 4; i++){
+            this.btnAnswersArray[i].setText(this.questionsArray.get(0).getAnswers()[i]);
+            this.btnAnswersArray[i].setActionCommand(this.questionsArray.get(0).getAnswers()[i]);
+        }
+        
+        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String command = ae.getActionCommand();
+        if (command.equals(this.questionsArray.get(0).getCorrectAnswer())) {
+            this.barThread.settimeToEnd(0);
+            this.progressBar.setValue(0); // resets the progress bar
+            this.questionsArray.remove(0);
+            this.updateQuizUI();
+        } else {
+            this.dispose();
+            // TODO: insert what to show after game has ended
+            JOptionPane.showMessageDialog(this, "Hai sbagliato, la risposta giusta è:\n" + this.questionsArray.get(0).getCorrectAnswer(), "Risposta sbagliata", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
