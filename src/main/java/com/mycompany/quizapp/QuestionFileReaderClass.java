@@ -11,12 +11,17 @@ import java.util.StringTokenizer;
  */
 public class QuestionFileReaderClass {
 
-    private QuestionClass question;
-    private ArrayList<QuestionClass> questionArray = new ArrayList<>();
+    private QuestionClass questionObj;
+    private ArrayList<QuestionClass> questionArray;
 
-    public QuestionFileReaderClass(ArrayList<QuestionClass> questionArray) {
+    private String subject;
+    private int difficulty;
+    private String question;
+    private String[] answers;
 
-        this.questionArray = questionArray;
+    public QuestionFileReaderClass(ArrayList<QuestionClass> questionsArray) {
+
+        this.questionArray = questionsArray;
 
     }
 
@@ -30,7 +35,7 @@ public class QuestionFileReaderClass {
 
         try {
 
-            file = new FileReader("files/questions.txt");
+            file = new FileReader("saves/questions.txt");
             fileReader = new BufferedReader(file);
 
             read = fileReader.readLine();
@@ -39,17 +44,21 @@ public class QuestionFileReaderClass {
 
                 token = new StringTokenizer(read, ";");
 
-                question = new QuestionClass(token.nextToken(), Integer.valueOf(token.nextToken()), token.nextToken(), new String[]{token.nextToken(), token.nextToken(), token.nextToken(), token.nextToken()});
-                questionArray.add(question);
+                subject = token.nextToken();
+                difficulty = Integer.valueOf(token.nextToken());
+                question = token.nextToken();
+                answers = new String[]{token.nextToken(), token.nextToken(), token.nextToken(), token.nextToken()};
+
+                questionObj = new QuestionClass(subject, difficulty, question, answers);
+                questionArray.add(questionObj);
                 read = fileReader.readLine();
 
             }
 
             file.close();
 
-        } catch (Exception eccezione) {
-
-            System.out.println("errore");
+        } catch (Exception e) {
+            System.out.println("Errore " + e.toString());
         }
 
     }

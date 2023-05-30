@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
  * Home Screen window
@@ -24,7 +23,11 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  */
 public class HomeScreen extends JFrame implements ActionListener {
 
+    private PlayersFileReaderClass leaderboardReader;
+    private QuestionFileReaderClass questionReader;
+
     private ArrayList<PlayerClass> leaderboardArray;
+    private ArrayList<QuestionClass> questionsArray;
 
     private LeaderboardList leaderboardList;
 
@@ -36,6 +39,13 @@ public class HomeScreen extends JFrame implements ActionListener {
     public HomeScreen(ArrayList<PlayerClass> leaderboardArray) {
 
         this.leaderboardArray = leaderboardArray;
+
+        leaderboardReader = new PlayersFileReaderClass(this.leaderboardArray);
+        leaderboardReader.readFromFile();
+        
+        questionsArray = new ArrayList<>();
+        questionReader = new QuestionFileReaderClass(questionsArray);
+
         this.setTitle("QuizApp");
         this.setSize(800, 400);
         this.setLayout(new BorderLayout());
@@ -92,6 +102,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.btnProfile = new JButton("CREATE NEW PROFILE");
         this.btnProfile.setBackground(Color.white);
         this.btnProfile.addActionListener(this);
+        this.btnProfile.setActionCommand("profile");
         this.btnProfile.setOpaque(false);
 
     }
@@ -167,7 +178,10 @@ public class HomeScreen extends JFrame implements ActionListener {
         switch (e.getActionCommand()) {
 
             case "play":
-                QuizScreen quizScreen = new QuizScreen();
+                questionReader.readFromFile();
+                this.dispose();
+                
+                QuizScreen quizScreen = new QuizScreen(questionsArray);
                 break;
 
             case "exit":

@@ -12,9 +12,6 @@ public class QuizApp {
         
         ArrayList<PlayerClass> leaderboardArray = new ArrayList<>();
         
-        PlayersFileReaderClass leaderboardReader = new PlayersFileReaderClass(leaderboardArray);
-        leaderboardReader.readFromFile();
-        
         HomeScreen homeScreen = new HomeScreen(leaderboardArray);
 
     }
