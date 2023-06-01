@@ -2,6 +2,7 @@ package com.mycompany.quizapp;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -34,7 +35,7 @@ public class HomeScreen extends JFrame implements ActionListener {
     private JButton btnPlay, btnExit, btnOptions, btnProfile;
     private JLabel lblLeaderboard, lblAvatar, lblLogo;
 
-    private JPanel pnlNord, pnlCenter, pnlSud, pnlEast, pnlWest, pnlPlay, pnlProfile, pnlLeaderboard, contentPane;
+    private JPanel pnlNord, pnlCenter, pnlSud, pnlEast, pnlWest, pnlPlay, pnlProfile, pnlLeaderboardList, contentPane;
 
     public HomeScreen(ArrayList<PlayerClass> leaderboardArray) {
 
@@ -81,7 +82,7 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.btnPlay.setBorderPainted(false); // removes border
         this.btnPlay.addActionListener(this);
         this.btnPlay.setActionCommand("play");
-        this.btnPlay.setOpaque(false); // removes transparency
+        this.btnPlay.setOpaque(false); // sets transparency
 
         this.btnOptions = new JButton();
         this.btnOptions.setIcon(new ImageIcon("assets/options.png"));
@@ -115,7 +116,7 @@ public class HomeScreen extends JFrame implements ActionListener {
 
         this.lblLeaderboard = new JLabel(new ImageIcon("assets/leaderboard.png"));
         this.lblLeaderboard.setText("LEADERBOARD");
-
+        this.lblLeaderboard.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.lblAvatar = new JLabel(new ImageIcon("assets/avatar.png"));
 
         this.lblLogo = new JLabel(new ImageIcon("assets/logo.png"));
@@ -151,14 +152,15 @@ public class HomeScreen extends JFrame implements ActionListener {
         this.pnlEast.add(pnlProfile);
         this.pnlEast.setOpaque(false);
 
-        this.pnlLeaderboard = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        this.pnlLeaderboard.add(leaderboardList);
-        this.pnlLeaderboard.setOpaque(false);
+        this.pnlLeaderboardList = new JPanel(new FlowLayout(FlowLayout.RIGHT,  30 , 10));
+        this.pnlLeaderboardList.add(leaderboardList);
+        this.pnlLeaderboardList.setOpaque(false);
 
         this.pnlWest = new JPanel();
         this.pnlWest.setLayout(new BoxLayout(pnlWest, BoxLayout.Y_AXIS));
         this.pnlWest.add(lblLeaderboard);
-        this.pnlWest.add(pnlLeaderboard);
+        this.pnlWest.add(pnlLeaderboardList);
+
         this.pnlWest.setOpaque(false);
     }
 
