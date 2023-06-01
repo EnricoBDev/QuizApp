@@ -1,29 +1,44 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.mycompany.quizapp.components;
+package com.mycompany.quizapp;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * Custom thread to stop when using the progress bar
+ *
  * @author EnricoBDev
  */
-public class ThreadTimedProgressBar extends Thread{
-    TimedProgressBar bar;
+public class ThreadTimedProgressBar extends Thread {
 
-    public ThreadTimedProgressBar(TimedProgressBar bar) {
+    TimedProgressBar bar;
+    JFrame frame;
+    int timeToEnd;
+
+    public ThreadTimedProgressBar(JFrame frame, TimedProgressBar bar) {
+        this.frame = frame;
         this.bar = bar;
     }
-    
+
+    public int gettimeToEnd() {
+        return timeToEnd;
+    }
+
+    public void settimeToEnd(int timeToEnd) {
+        this.timeToEnd = timeToEnd;
+    }
+
     @Override
-    public void run(){
+    public void run() {
         try {
-            for (int i = 0; i <= bar.getMaximum(); i++) {
-                this.sleep(1000);
-                bar.setValue(i);
-                bar.setString(i + "/" + bar.getMaximum());
+            for (this.timeToEnd = 0; this.timeToEnd <= bar.getMaximum(); this.timeToEnd++) {
+                Thread.sleep(1000);
+                bar.setValue(this.timeToEnd);
+                bar.setString((bar.getMaximum() - this.timeToEnd) + " secondi rimasti");
                 bar.update(bar.getGraphics());
             }
+            frame.dispose();
+            JOptionPane.showMessageDialog(frame, "Hai terminato il tempo a disposizione", "Tempo scaduto", JOptionPane.INFORMATION_MESSAGE);
+            // TODO: insert what to show after game has ended
         } catch (Exception e) {
         }
     }

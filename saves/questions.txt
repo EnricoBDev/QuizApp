@@ -1,0 +1,3 @@
+sistemi e reti;4;Qual'è uno dei protocoli del livello 4 (Applicazione) del modello TCP-IP?;FTP;TCP;ROUTING;IP;
+sistemi e reti;5;Qual'è il comande che consente di controllare la connessione tra due dispositivi su una rete?;ping;ip route;show running-config;ipv6 enable;
+sistemi e reti;5;Qual'è il nome del protocollo utilizzato per la posta elettronica?;SMPT;HTTP;DNS;DHCP;
