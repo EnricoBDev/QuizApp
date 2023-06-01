@@ -1,16 +1,3 @@
-storia;1;Quale di queste date non viene utilizzata dagli storici per indicare l’inizio dell’Età moderna?;1485;1492;1527;1453;
-storia;2;Chi ha condotto la Campagna d’Italia?;Napoleone;Mazzini;Cattaneo;Metternich;
-storia;3;Quando si riunirono gli Stati generali?;5 maggio 1789;5 maggio 1792;5 maggio 1935;5 maggio 1821;
-storia;4;Vulcanizzazione è un termine che si riferisce a:;II Rivoluzione industriale;geologia;geografia;I Rivoluzione industriale;
-storia;5;La battaglia di Yorktown sancì:;La fine della Rivoluzione americana, con la vittoria dei coloni;La fine della Guerra dei Sette anni, con la vittoria dell’Inghilterra;La fine della Rivoluzione Francese, con la sconfitta del re;L’inizio della Rivoluzione americana;
-italiano;1;Quante tragedie ha scritto Alfieri?;19;18;20;25;
-italiano;2;Il Neoclassicismo;esalta la compostezza e l’armonia;esalta la ragione e l’intelligenza;esalta il sentimento;esalta la religiosità medievale;
-italiano;3;Goldoni è morto a;Parigi;Venezia;Rimini;Londra;
-italiano;4;Quanti sonetti sono compresi nelle Poesie di Foscolo;12;13;2;19;
-italiano;5;Do lode alla ragion, ma corro ove al cor piace è un verso di:;Foscolo;Alfieri;Leopardi;Marino;
-sistemi e reti;1;Qual'è uno dei protocoli del livello 1 (Accesso alla Rete) del modello TCP-IP?;802.x.x.;SMPT;IP;TCP;
-sistemi e reti;2; Qual'è uno dei protocoli del livello 2 (Rete) del modello TCP-IP?;ARP;DNS;TELNET; 
-sistemi e reti;3;Qual'è uno dei protocoli del livello 3 (Transport) del modello TCP-IP?;UDP;ICMP;RARP;HTTP;
-sistemi e reti;4;Qual'è uno dei protocoli del livello 4 (Applicazione) del modello TCP-IP?;FTP;TCP;ROUTING;SSH;
-sistemi e reti;5;Qual'è lo strumento consente di controllare la connessione tra due dispositivi su una rete?;ping;ip route;show running-config;ipv6 enable;
+sistemi e reti;4;Qual'è uno dei protocoli del livello 4 (Applicazione) del modello TCP-IP?;FTP;TCP;ROUTING;IP;
+sistemi e reti;5;Qual'è il comande che consente di controllare la connessione tra due dispositivi su una rete?;ping;ip route;show running-config;ipv6 enable;
 sistemi e reti;5;Qual'è il nome del protocollo utilizzato per la posta elettronica?;SMPT;HTTP;DNS;DHCP;

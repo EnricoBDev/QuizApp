@@ -19,7 +19,7 @@ public class QuestionClass implements Comparable<QuestionClass>{
 
     //constructor method
     public QuestionClass(String subject, int difficulty, String question, String[] answers) {
-        this.subject = subject;
+        this.subject = subject.toUpperCase();
         this.difficulty = difficulty;
         this.question = question;
         this.answers = answers;

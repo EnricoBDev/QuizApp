@@ -1,6 +1,5 @@
 package com.mycompany.quizapp;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -78,7 +77,7 @@ public class QuizScreen extends JFrame implements ActionListener {
 
     private void createQuizComponents() {
 
-        this.lblSubject = new JLabel(questionsArray.get(0).getSubject().toUpperCase());
+        this.lblSubject = new JLabel(questionsArray.get(0).getSubject());
         this.lblQuestion = new JLabel(questionsArray.get(0).getQuestion());
 
         this.btnAnswersArray = new JButton[4];
@@ -115,30 +114,36 @@ public class QuizScreen extends JFrame implements ActionListener {
         // repaints the ui
         this.revalidate();
         this.repaint();
-        
+
         this.lblSubject.setText(this.questionsArray.get(0).getSubject());
         this.lblQuestion.setText(this.questionsArray.get(0).getQuestion());
-        
-        for(int i = 0; i < 4; i++){
+
+        for (int i = 0; i < 4; i++) {
             this.btnAnswersArray[i].setText(this.questionsArray.get(0).getAnswers()[i]);
             this.btnAnswersArray[i].setActionCommand(this.questionsArray.get(0).getAnswers()[i]);
         }
-        
-        
+
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
-        if (command.equals(this.questionsArray.get(0).getCorrectAnswer())) {
-            this.barThread.settimeToEnd(0);
-            this.progressBar.setValue(0); // resets the progress bar
-            this.questionsArray.remove(0);
-            this.updateQuizUI();
+        if (questionsArray.size() > 1) {
+            if (command.equals(this.questionsArray.get(0).getCorrectAnswer())) {
+                this.barThread.settimeToEnd(0);
+                this.progressBar.setValue(0); // resets the progress bar
+
+                this.questionsArray.remove(0);
+                this.updateQuizUI();
+            } else {
+                this.dispose();
+                // TODO: insert what to show after game has ended
+                JOptionPane.showMessageDialog(this, "Hai sbagliato, la risposta giusta è:\n" + this.questionsArray.get(0).getCorrectAnswer(), "Risposta sbagliata", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
-            this.dispose();
             // TODO: insert what to show after game has ended
-            JOptionPane.showMessageDialog(this, "Hai sbagliato, la risposta giusta è:\n" + this.questionsArray.get(0).getCorrectAnswer(), "Risposta sbagliata", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Hai completato tutte le domande!", "Completazione", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }
 }
